@@ -17,9 +17,10 @@ print("""Welcome to this Blacjack simulation game. Blackjack is a card game whic
 	 - If the dealer score is higher than those of the players, the bank wins. If it's the same is a draw. 
 	 - If the score is lower to the player's score, the dealer can pick more cards until he wins, draws or break the 21 points.""")
 
-n_players = input("How many players are going to play? Type One or Two ")
-while n_players != "One":
-	while n_players != "Two":
-		n_players = input("Please, select One or Two players ")
+n_players = input("How many players are going to play? Type 1 or 2 ")
+while n_players not in ["1", "2"]:
+	n_players = input("Please, select 1 or 2 players ")
+	if n_players == "1" or n_players == "2":
+		break
 
 print("The selected number of players is: " + str(n_players))
