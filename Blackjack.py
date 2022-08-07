@@ -24,3 +24,10 @@ while n_players not in ["1", "2"]:
 		break
 
 print("The selected number of players is: " + str(n_players))
+if n_players == "1":
+	player1 = input("Introduce player's name: ")
+	print("Welcome " + player1)
+elif n_players == "2":
+	player1 = input("Introduce the name of player 1: ")
+	player2 = input("Introduce the name of player 2: ")
+	print("Welcome " + player1 + " and " + player2 + "!")
