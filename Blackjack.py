@@ -6,7 +6,11 @@ class Player():
 class Bank():
 	pass
 
-print("""Welcome to this Blacjack simulation game. Blackjack is a card game which you play against the banking or the machine. 
+class Card():
+	pass
+
+print("""Welcome to this Blacjack simulation game. Blackjack is a card game which you play against the banking or the machine.
+
 	A simplified set of rules of the game are as follow:
 	 - The dealer deals two cards to each player.
 	 - A card is shown in the table, this is the initial dealer hand. Another card is drawn to the dealer's hand, but remains face down.
@@ -15,7 +19,7 @@ print("""Welcome to this Blacjack simulation game. Blackjack is a card game whic
 	 - Once the cards are shown, each player can decide to Hit or Stand. Hit means draw another card, Stand keeping the cards at hand.
 	 - If the player selected Hit and exceeds 21, he loses. If the player is still in the game, the dealer reveals the second card. 
 	 - If the dealer score is higher than those of the players, the bank wins. If it's the same is a draw. 
-	 - If the score is lower to the player's score, the dealer can pick more cards until he wins, draws or break the 21 points.""")
+	 - If the score is lower to the player's score, the dealer can pick more cards until he wins, draws or breaks the 21 points.""")
 
 n_players = input("How many players are going to play? Type 1 or 2 ")
 while n_players not in ["1", "2"]:
@@ -31,3 +35,31 @@ elif n_players == "2":
 	player1 = input("Introduce the name of player 1: ")
 	player2 = input("Introduce the name of player 2: ")
 	print("Welcome " + player1 + " and " + player2 + "!")
+
+deck = {}
+def generate_new_deck():
+	for n in range(1, 53):
+		if n < 14:
+			deck[n] = ["Spades", n]
+		elif n < 27:
+			deck[n] = ["Hearts", n-13]
+		elif n < 40:
+			deck[n] = ["Clubs", n-26]
+		elif n < 53:
+			deck[n] = ["Diamonds", n-39]
+
+	for n, card in deck.items():
+		if card[1] == 1:
+			deck[n][1] = "Ace"
+		elif card[1] == 11:
+			deck[n][1] = "J"
+		elif card[1] == 12:
+			deck[n][1] = "Q"
+		elif card[1] == 13:
+			deck[n][1] = "K"
+
+generate_new_deck()
+print(deck)
+
+
+
