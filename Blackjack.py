@@ -38,8 +38,7 @@ def pick_card():
 	selected_card = random.choice(shuffle_deck)
 	return deck.pop(selected_card)
 
-def calculate_score(*cards):
-	score = 0
+def calculate_score(score = 0, *cards):
 	for card in cards:
 		if card[1] == "J" or card[1] == "Q" or card[1] == "K":
 			score += 10
@@ -87,21 +86,60 @@ if n_players == "1":
 	input("The first card for " + player1 + " is " + str(card1))
 	card2 = pick_card()
 	input("The second card for " + player1 + " is " + str(card2))
-	score1 = calculate_score(card1, card2)
+	score1 = calculate_score(0, card1, card2)
 	print("Current score is " + str(score1))
 	card1d = pick_card()
 	card2d = pick_card()
 	input("The dealer card is " + str(card1d))
-	score_d = calculate_score(card1d, card2d)
+	score_d = calculate_score(0, card1d, card2d)
 	if score1 == 21 and score_d == 21:
 		print("It's a draw! Dealer second card was " + str(card2d) + ". Both of you got a Blackjack")
-	elif score_d == 1:
+	elif score_d == 21:
 		print("Dealer got a Blackjack! His second card was " + str(card2d) + ". You lose! :(")
 	elif score1 == 21:
 		print("A Blackjack!! You win!")
+	else:
+		while score1 < 21:
+			choice = input("Would you Hit or Stand? Type H or S ")
+			while choice not in ["H", "S"]:
+				choice = input("Incorrect, try again ")
+
+			if choice == "H":
+				card3 = pick_card()
+				input(player1 + " picked " + str(card3))
+				score1 = calculate_score(score1, card3)
+				print("Current score is " + str(score1))
+				continue
+
+			if choice == "S":
+				if score1 < score_d:
+					print("Dealer second card is " + str(card2d) + ". Dealer score is: " + str(score_d) +  ". You lose! :(")
+				break
+
+		if score1 > 21:
+			print("Burst! You lose")
+		# elif score1 == 21:
+		# 	print("You win, you made it to " + str(score1) + "!!")
+		elif score1 == score_d:
+			print("Dealer second card is " + str(card2d) + ". Dealer score is: " + str(score_d) + ". It's a draw.")
+		elif score1 > score_d:
+			while score1 > score_d:
+				print("Dealer second card is " + str(card2d) + ". Dealer score is: " + str(score_d) + ".")
+				card3d = pick_card()
+				score_d = calculate_score(score_d, card3d)
+				print("Dealer picks another card: " + str(card3d) + ". Dealer score is: " + str(score_d)+ ".")
+			if score_d > 21:
+				print("Dealer bursts! You win :)")
+			if score_d > score1 and score_d<22:
+				print("The banking wins")
+			if score1 == score_d:
+				print("It's a draw")
+
+
 
 
 elif n_players == "2":
+	print("The 2 players game is not available in this version yet")
 	card1p1 = pick_card()
 	card2p1 = pick_card()
 	card1p2 = pick_card()
