@@ -38,7 +38,21 @@ def pick_card():
 	selected_card = random.choice(shuffle_deck)
 	return deck.pop(selected_card)
 
-print("""Welcome to this Blacjack simulation game. Blackjack is a card game which you play against the banking or the machine.
+def calculate_score(*cards):
+	score = 0
+	for card in cards:
+		if card[1] == "J" or card[1] == "Q" or card[1] == "K":
+			score += 10
+		elif card[1] == "A":
+			if score+11 > 21:
+				score += 1
+			else: 
+				score += 11
+		else:
+			score += card[1]
+	return score
+
+print("""Welcome to this Blackjack simulation game. Blackjack is a card game which you play against the banking or the machine.
 
 	A simplified set of rules of the game are as follow:
 	 - The dealer deals two cards to each player.
@@ -65,15 +79,28 @@ elif n_players == "2":
 	player2 = input("Introduce the name of player 2: ")
 	print("Welcome " + player1 + " and " + player2 + "!")
 
+input("Now we're gonna shuffle the cards. Press Enter to continue")
 generate_new_deck()
 
+if n_players == "1":
+	card1 = pick_card()
+	input("The first card for " + player1 + " is " + str(card1))
+	card2 = pick_card()
+	input("The second card for " + player1 + " is " + str(card2))
+	score1 = calculate_score(card1, card2)
+	print("Current score is " + str(score1))
+	if score1 == 21:
+		print("A Blackjack!! You win!")
 
 
-card1 = pick_card()
-card2 = pick_card()
+elif n_players == "2":
+	card1p1 = pick_card()
+	card2p1 = pick_card()
+	card1p2 = pick_card()
+	card2p3 = pick_card()
 
 
-def calculate_score():
-	pass
+
+
 
 
