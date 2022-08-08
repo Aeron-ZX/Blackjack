@@ -9,6 +9,35 @@ class Bank():
 class Card():
 	pass
 
+deck = {}
+def generate_new_deck():
+	for n in range(1, 53):
+		if n < 14:
+			deck[n] = ["Spades", n]
+		elif n < 27:
+			deck[n] = ["Hearts", n-13]
+		elif n < 40:
+			deck[n] = ["Clubs", n-26]
+		elif n < 53:
+			deck[n] = ["Diamonds", n-39]
+
+	for n, card in deck.items():
+		if card[1] == 1:
+			deck[n][1] = "A"
+		elif card[1] == 11:
+			deck[n][1] = "J"
+		elif card[1] == 12:
+			deck[n][1] = "Q"
+		elif card[1] == 13:
+			deck[n][1] = "K"
+
+def pick_card():
+	shuffle_deck = []
+	for n in deck.keys():
+		shuffle_deck.append(n)
+	selected_card = random.choice(shuffle_deck)
+	return deck.pop(selected_card)
+
 print("""Welcome to this Blacjack simulation game. Blackjack is a card game which you play against the banking or the machine.
 
 	A simplified set of rules of the game are as follow:
@@ -36,30 +65,15 @@ elif n_players == "2":
 	player2 = input("Introduce the name of player 2: ")
 	print("Welcome " + player1 + " and " + player2 + "!")
 
-deck = {}
-def generate_new_deck():
-	for n in range(1, 53):
-		if n < 14:
-			deck[n] = ["Spades", n]
-		elif n < 27:
-			deck[n] = ["Hearts", n-13]
-		elif n < 40:
-			deck[n] = ["Clubs", n-26]
-		elif n < 53:
-			deck[n] = ["Diamonds", n-39]
-
-	for n, card in deck.items():
-		if card[1] == 1:
-			deck[n][1] = "Ace"
-		elif card[1] == 11:
-			deck[n][1] = "J"
-		elif card[1] == 12:
-			deck[n][1] = "Q"
-		elif card[1] == 13:
-			deck[n][1] = "K"
-
 generate_new_deck()
-print(deck)
 
+
+
+card1 = pick_card()
+card2 = pick_card()
+
+
+def calculate_score():
+	pass
 
 
