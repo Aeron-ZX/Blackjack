@@ -79,7 +79,7 @@ elif n_players == "2":
 	player2 = input("Introduce the name of player 2: ")
 	print("Welcome " + player1 + " and " + player2 + "!")
 
-input("Now we're gonna shuffle the cards. Press Enter to continue")
+input("Now we're gonna shuffle and draw the cards. Press Enter to continue each time")
 generate_new_deck()
 
 if n_players == "1":
@@ -89,7 +89,15 @@ if n_players == "1":
 	input("The second card for " + player1 + " is " + str(card2))
 	score1 = calculate_score(card1, card2)
 	print("Current score is " + str(score1))
-	if score1 == 21:
+	card1d = pick_card()
+	card2d = pick_card()
+	input("The dealer card is " + str(card1d))
+	score_d = calculate_score(card1d, card2d)
+	if score1 == 21 and score_d == 21:
+		print("It's a draw! Dealer second card was " + str(card2d) + ". Both of you got a Blackjack")
+	elif score_d == 1:
+		print("Dealer got a Blackjack! His second card was " + str(card2d) + ". You lose! :(")
+	elif score1 == 21:
 		print("A Blackjack!! You win!")
 
 
