@@ -59,8 +59,8 @@ print("""Welcome to this Blackjack simulation game. Blackjack is a card game whi
 	 - The goal of the game is to have the biggest hand without exceeding 21.
 	 - Each card scores the number they represent. J, Q and K count as 10 points. Any Ace counts as 11, as long as that value wouldn't exceed 21 in the hand score; in which case it counts as 1. 
 	 - Once the cards are shown, each player can decide to Hit or Stand. Hit means draw another card, Stand keeping the cards at hand.
-	 - If the player selected Hit and exceeds 21, he loses. If the player is still in the game, the dealer reveals the second card. 
-	 - If the dealer score is higher than those of the players, the bank wins. If it's the same is a draw. 
+	 - The player can Hit as many times as desired until he bursts 21 points or decide to Stand. When the player Stands, the dealer reveals his second card. 
+	 - If the dealer score is higher than that of the players, the bank wins. If it's the same it's a draw. 
 	 - If the score is lower to the player's score, the dealer can pick more cards until he wins, draws or breaks the 21 points.""")
 
 n_players = input("How many players are going to play? Type 1 or 2 ")
